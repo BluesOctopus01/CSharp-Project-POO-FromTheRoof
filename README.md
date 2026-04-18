@@ -14,4 +14,4 @@ Work in progress
 
 ## Architecture
 
-![Diagram](FromTheRoof/docs/diagram.png)
+![Diagram](docs/Diagram.png)
