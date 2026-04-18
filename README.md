@@ -11,3 +11,7 @@ An Application console simulation where the player progresses through days, cour
 
 ## Status
 Work in progress
+
+## Architecture
+
+![Diagram](FromTheRoof/docs/diagram.png)
