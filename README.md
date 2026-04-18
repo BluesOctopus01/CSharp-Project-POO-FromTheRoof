@@ -14,4 +14,4 @@ Work in progress
 
 ## Architecture
 
-![Diagram](docs/Diagram.png)
+![Diagram](docs/diagram.png)
