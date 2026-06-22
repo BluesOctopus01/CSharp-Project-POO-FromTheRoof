@@ -6,12 +6,10 @@ public class Skill
 {
     private string _name;
     private int _level = 0;
-    private string _description;
 
-    public Skill(string name, string description)
+    public Skill(string name)
     {
         _name = name;
-        _description = description;
     }
     public void IncreaseLevel(int value)
     {
@@ -19,6 +17,6 @@ public class Skill
     }
     public void Display()
     {
-        throw new NotImplementedException("Display n'est pas encore implémenter");
+        Console.WriteLine($"{_name} - Level {_level}");
     }
 }

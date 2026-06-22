@@ -34,4 +34,12 @@ public class StatSheet
         _money += value;
         _money = Math.Clamp(_money, 0, 9999);
     }
+    public void DisplayStat()
+    {
+        Console.WriteLine("=== Stats ===");
+        Console.WriteLine($"Energy : {_energy}");
+        Console.WriteLine($"Motivation : {_motivation}");
+        Console.WriteLine($"Stress : {_stress}");
+        Console.WriteLine($"Money : {_money}€");
+    }
 }

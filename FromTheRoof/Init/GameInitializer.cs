@@ -26,13 +26,14 @@ public static class GameInitializer
     }
     private static List<Skill> CreateDefaultSkills()
     {
-        return new List<Skill>{
-        new Skill("C#", "Programmation orientée objet en C#"),
-        new Skill("SQL", "Gestion de bases de données"),
-        new Skill("Web", "Développement d'applications web"),
-        new Skill("Réseaux", "Bases des réseaux informatiques"),
-        new Skill("Cybersécurité", "Sécurisation des systèmes et services")
-    };
+        return new List<Skill>
+        {
+            new Skill("C#"),
+            new Skill("SQL"),
+            new Skill("Web"),
+            new Skill("Réseaux"),
+            new Skill("Cybersécurité")
+        };
     }
 
 }

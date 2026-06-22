@@ -16,11 +16,15 @@ public class Player
     }
     public void DisplayStats()
     {
-        throw new NotImplementedException("DisplayStats n'est pas encore implémenter");
+        _stat.DisplayStat();
     }
     public void DisplaySkills()
     {
-        throw new NotImplementedException("DisplaySkills n'est pas encore implémenter");
+        Console.WriteLine("=== Skills ===");
+        foreach(Skill skill in _skills)
+        {
+            skill.Display();
+        }
     }
     public bool CanAttendCourse(Course course)
     {
