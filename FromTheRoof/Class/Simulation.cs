@@ -1,17 +1,19 @@
-using System;
-using System.Threading;
+using FromTheRoof.Interface;
 using FromTheRoof.Ui;
 namespace FromTheRoof.Class;
 
-public class Simulation
+public class Simulation : IStatObserver
 {
     private Player _player;
     private List<GameAction> _actions;
     private List<Course> _courses;
     private List<GameEvent> _events;
+    private Exam _finalExam = new Exam("Final Exam");
     private Day _currentDay;
     private int _currentDayNumber = 1;
     private bool _isRunning = true;
+    private bool _forceFinalExam = false;
+    private string _criticalEndingMessage = "";
 
     public Simulation(Player player, List<GameAction> actions, List<Course> courses, List<GameEvent> events)
     {
@@ -20,25 +22,25 @@ public class Simulation
         _courses = courses;
         _events = events;
         _currentDay = new Day(_currentDayNumber);
+        _player.Stats.AddObserver(this);
     }
 
     public void Start()
     {   GameUi.ShowTitle();
         GameUi.Pause("Press any key to start...");
 
-        while (_isRunning && _currentDayNumber <= 7)
+        while (_isRunning && _currentDayNumber < 7)
         {
             PlayCurrentDay();
             GoToNextDay();
         }
 
-        GameUi.Clear();
-        Console.WriteLine("=== WEEK FINISHED ===");
-        GameUi.Pause();
+        PlayFinalExam();
     }
 
     public void PlayCurrentDay()
     {
+        AssignCourseToCurrentDay();
         Console.Clear();
         GameUi.ShowHeader(_currentDayNumber, _player.Name);
 
@@ -58,10 +60,16 @@ public class Simulation
 
         AssignRandomEventToCurrentDay();
         _currentDay.Run(_player);
-
-        Console.WriteLine();
-        Console.WriteLine("=== END OF DAY ===");
-        Console.WriteLine();
+        if (HandleCriticalEnding())
+        {
+            return;
+        }
+        AttendDailyCourse();
+        if (HandleCriticalEnding())
+        {
+            return;
+        }
+        GameUi.ShowSection("END OF DAY");
 
         _player.DisplayStats();
         Console.WriteLine();
@@ -78,8 +86,7 @@ public class Simulation
         {
             Console.Clear();
             GameUi.ShowHeader(_currentDayNumber, _player.Name);
-
-            Console.WriteLine("=== PLANNING ===");
+            GameUi.ShowSection("PLANNING");
             Console.WriteLine("1. Add action");
             Console.WriteLine("2. Remove action");
             Console.WriteLine("3. Show planned day");
@@ -122,9 +129,7 @@ public class Simulation
     {
         Console.Clear();
         GameUi.ShowHeader(_currentDayNumber, _player.Name);
-
-        Console.WriteLine("=== AVAILABLE ACTIONS ===");
-        Console.WriteLine();
+        GameUi.ShowSection("AVAILABLE ACTIONS");
 
         for (int i = 0; i < _actions.Count; i++)
         {
@@ -162,9 +167,7 @@ public class Simulation
     {
         Console.Clear();
         GameUi.ShowHeader(_currentDayNumber, _player.Name);
-
-        Console.WriteLine("=== REMOVE ACTION ===");
-        Console.WriteLine();
+        GameUi.ShowSection("REMOVE ACTION");
 
         _currentDay.DisplaySummary();
 
@@ -196,11 +199,112 @@ public class Simulation
             }
         }
     }
+    private void AssignCourseToCurrentDay()
+    {
+        if (_currentDayNumber == 7)
+        {
+            return;
+        }
+        int courseIndex = (_currentDayNumber - 1)%_courses.Count;
+        _currentDay.SetCourse(_courses[courseIndex]);
+    }
 
+    private void AttendDailyCourse()
+    {
+        if (_currentDay.DailyCourse == null)
+        {
+            return;
+        }
+
+        GameUi.ShowSection("DAILY COURSE");
+
+        Console.WriteLine($"Today's course : {_currentDay.DailyCourse.Name}");
+        Console.WriteLine();
+
+        Console.WriteLine("1. Attend the course");
+        Console.WriteLine("2. Skip the course");
+        Console.WriteLine();
+
+        Console.Write("Choice : ");
+
+        string input = Console.ReadLine() ?? "";
+
+        Console.WriteLine();
+
+        if (input == "1")
+        {
+            _currentDay.DailyCourse.Attend(_player);
+        }
+        else
+        {
+            GameUi.ShowMessage("You skipped the course.");
+        }
+
+        GameUi.Pause();
+    }
     private void GoToNextDay()
     {
         _currentDayNumber++;
         _currentDay = new Day(_currentDayNumber);
     }
+    private void PlayFinalExam()
+    {
+        GameUi.Clear();
 
+        GameUi.ShowSection("FINAL EXAM");
+
+        GameUi.Loading("Calculating final score");
+
+        Console.WriteLine();
+
+        _finalExam.DisplayResult(_player);
+
+        GameUi.Pause();
+    }
+
+    public void OnStatChanged(StatSheet stats)
+    {
+        if (_forceFinalExam)
+            return;
+
+        if (stats.IsExhausted)
+        {
+            _criticalEndingMessage = "You collapse from exhaustion. Days pass while you recover. The final exam arrives before you are ready.";
+            _forceFinalExam = true;
+            return;
+        }
+
+        if (stats.IsBurnedOut)
+        {
+            _criticalEndingMessage = "Stress takes over completely. You burn out and lose several days. The final exam is already here.";
+            _forceFinalExam = true;
+            return;
+        }
+
+        if (stats.IsBroke)
+        {
+            _criticalEndingMessage = "You run out of money. Survival becomes your priority, and studying falls apart. The final exam arrives too soon.";
+            _forceFinalExam = true;
+        }
+    }
+    private bool HandleCriticalEnding()
+    {
+        if (!_forceFinalExam)
+            return false;
+
+        GameUi.Clear();
+
+        GameUi.ShowSection("TIME SKIP");
+
+        GameUi.ShowMessage(_criticalEndingMessage);
+
+        Console.WriteLine();
+        GameUi.ShowMessage("You are now facing the final exam.");
+
+        GameUi.Pause();
+
+        _currentDayNumber = 7;
+
+        return true;
+    }
 }

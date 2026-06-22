@@ -20,17 +20,6 @@ public static class ActionInitializer
                 new Effect(-5,new StatEffectMotivation())
             }),
             new GameAction(
-                "Study For Exam",
-                2,
-                new List<Effect>
-                {
-                    new Effect(1, new RandomSkillEffect()),
-                    new Effect(15, new StatEffectStress()),
-                    new Effect(-10, new StatEffectMotivation())
-                }
-            ),
-
-            new GameAction(
                 "Sleep",
                 1,
                 new List<Effect>

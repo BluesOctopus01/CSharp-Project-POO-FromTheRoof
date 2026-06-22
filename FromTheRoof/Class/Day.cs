@@ -9,7 +9,7 @@ public class Day
     private int _maxActionPoint = 5;
     private int _usedActionPoint =0 ;
     private GameEvent ? _dailyEvent;
-
+    private Course? _dailyCourse;
     public Day(int number = 1)
     {
         _number = number;
@@ -49,6 +49,11 @@ public class Day
     {
         _dailyEvent = gameEvent;
     }
+    public void SetCourse(Course course)
+    {
+        _dailyCourse = course;
+    }
+    public Course? DailyCourse => _dailyCourse;
     public void Run(Player player)
     {   
         if(_dailyEvent != null)

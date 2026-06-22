@@ -8,6 +8,7 @@ public class Skill
     private int _level = 0;
 
     public string Name =>_name;
+    public int Level => _level;
     public Skill(string name)
     {
         _name = name;

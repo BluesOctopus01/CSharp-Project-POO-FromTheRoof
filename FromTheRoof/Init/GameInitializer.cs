@@ -32,7 +32,8 @@ public static class GameInitializer
             new Skill("SQL"),
             new Skill("Web"),
             new Skill("Network"),
-            new Skill("Cybersecurity")
+            new Skill("Cybersecurity"),
+            new Skill("Python")
         };
     }
     

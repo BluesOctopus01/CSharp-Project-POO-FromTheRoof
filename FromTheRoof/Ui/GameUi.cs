@@ -47,4 +47,21 @@ public static void ShowHeader(int dayNumber,string playerName)
     {
         Console.Clear();
     }
+    public static void ShowSection(string title)
+    {
+        Console.WriteLine();
+        Console.WriteLine($"--- {title} ---");
+        Console.WriteLine();
+    }
+
+    public static void ShowMessage(string message)
+    {
+        Console.WriteLine($"  {message}");
+    }
+
+    public static void ShowSeparator()
+    {
+        Console.WriteLine();
+        Console.WriteLine("----------------------------------------");
+    }
 }
