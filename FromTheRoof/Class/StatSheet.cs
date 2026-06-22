@@ -9,13 +9,6 @@ public class StatSheet
     private int _stress = 0;
     private double _money = 25.0;
 
-    public StatSheet(int energy , int motivation, int stress, double money)
-    {
-        _energy = energy;
-        _motivation = motivation;
-        _stress = stress;
-        _money = money;
-    }
     public void ModifyEnergy()
     {
         throw new NotImplementedException("ModifyEnergy n'est pas encore implémenter");
