@@ -7,6 +7,15 @@ public static class GameInitializer
 {
     public static Player CreatePlayer()
     {
+    Console.WriteLine(@"
+         ______                     _   _                             __ 
+        |  ____|                   | | | |                           / _|
+        | |__ _ __ ___  _ __ ___   | |_| |__   ___   _ __ ___   ___ | |_ 
+        |  __| '__/ _ \| '_ ` _ \  | __| '_ \ / _ \ | '__/ _ \ / _ \|  _|
+        | |  | | | (_) | | | | | | | |_| | | |  __/ | | | (_) | (_) | |  
+        |_|  |_|  \___/|_| |_| |_|  \__|_| |_|\___| |_|  \___/ \___/|_|  
+                                                                        
+                                                                        ");
         string name = AskPlayerName();
         return new Player(name,new StatSheet(),CreateDefaultSkills());
     }

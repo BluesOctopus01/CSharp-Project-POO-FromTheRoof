@@ -23,7 +23,7 @@ public class Player
     }
     public void DisplaySkills()
     {
-        Console.WriteLine("=== Skills ===");
+        Console.WriteLine("--- Skills ---");
         foreach(Skill skill in _skills)
         {
             skill.Display();

@@ -37,7 +37,7 @@ public class StatSheet
     }
     public void DisplayStat()
     {
-        Console.WriteLine("=== Stats ===");
+        Console.WriteLine("--- Stats ---");
         Console.WriteLine($"Energy : {_energy}");
         Console.WriteLine($"Motivation : {_motivation}");
         Console.WriteLine($"Stress : {_stress}");

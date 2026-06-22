@@ -8,6 +8,7 @@ public class Day
     private List<GameAction> _plannedActions;
     private int _maxActionPoint = 5;
     private int _usedActionPoint =0 ;
+    private GameEvent ? _dailyEvent;
 
     public Day(int number = 1)
     {
@@ -44,8 +45,16 @@ public class Day
     Console.WriteLine($"{action.Name} removed");
         return true;
     }   
-    public void Run(Player player)
+    public void SetEvent(GameEvent gameEvent)
     {
+        _dailyEvent = gameEvent;
+    }
+    public void Run(Player player)
+    {   
+        if(_dailyEvent != null)
+        {
+            _dailyEvent.Trigger(player);
+        }
         foreach(GameAction action in _plannedActions)
         {
             action.Execute(player);
