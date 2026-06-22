@@ -1,20 +1,27 @@
 using System;
+using FromTheRoof.Interface;
 
 namespace FromTheRoof.Class;
 
 public class Effect
 {
-    protected int _value;
-    protected string _description;
+    private int _value;
+    private string _description;
 
-    protected Effect(int value, string description)
+    private IStrategyEffect _strategy;
+
+    protected Effect(int value, string description, IStrategyEffect strategy)
     {
         _value = value;
         _description = description;
+        _strategy = strategy;
     }
-
-    public virtual void Apply(Player player)
+    public void SetStrategy(IStrategyEffect strategy)
     {
-        throw new NotImplementedException("Apply n'est pas encore implémenter");
+        _strategy = strategy;
+    }
+    public void Apply(Player player)
+    {
+        _strategy.ApplyEffect(player,_value);
     }
 }

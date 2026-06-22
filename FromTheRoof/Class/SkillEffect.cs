@@ -1,19 +1,20 @@
 using System;
+using FromTheRoof.Interface;
 
 namespace FromTheRoof.Class;
 
-public class SkillEffect : Effect
+public class SkillEffect : IStrategyEffect
 {
     private string _skillName;
 
-    public SkillEffect(int value, string description, string skillName)
-        : base(value, description)
+    public SkillEffect(string skillName)
     {
         _skillName = skillName;
     }
-
-    public override void Apply(Player player)
+    public void ApplyEffect(Player player, int value)
     {
-        throw new NotImplementedException("Apply n'est pas encore implémenter");
+        throw new NotImplementedException();
     }
+
+
 }

@@ -1,19 +1,18 @@
 using System;
+using FromTheRoof.Interface;
 
 namespace FromTheRoof.Class;
 
-public class StatEffect : Effect
+public class StatEffect : IStrategyEffect
 {
     private string _statName;
 
-    public StatEffect(int value, string description, string statName)
-        : base(value, description)
+    public StatEffect(string statName)
     {
         _statName = statName;
     }
-
-    public override void Apply(Player player)
+    public void ApplyEffect(Player player, int value)
     {
-        throw new NotImplementedException("Apply n'est pas encore implémenter");
+        throw new NotImplementedException();
     }
 }
