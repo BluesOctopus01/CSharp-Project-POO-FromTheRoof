@@ -16,6 +16,7 @@ public class Player
     }
     public StatSheet Stats => _stat;
     public List<Skill> Skills => _skills;
+    public string Name => _name;
     public void DisplayStats()
     {
         _stat.DisplayStat();

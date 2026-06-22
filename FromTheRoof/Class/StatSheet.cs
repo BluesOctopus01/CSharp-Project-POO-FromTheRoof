@@ -14,6 +14,7 @@ public class StatSheet
     public bool IsBroke => _money <= 0;
 
     public bool IsMotivated => _motivation >= 50;
+    public int Energy => _energy;
     public void ModifyEnergy(int value)
     {
         _energy += value;

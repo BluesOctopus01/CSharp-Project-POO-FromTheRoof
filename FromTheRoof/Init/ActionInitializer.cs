@@ -4,7 +4,7 @@ using FromTheRoof.Effects;
 
 namespace FromTheRoof.Init;
 
-public static class ActionInitilizer
+public static class ActionInitializer
 {
     public static List<GameAction> CreateDefaultActions()
     {

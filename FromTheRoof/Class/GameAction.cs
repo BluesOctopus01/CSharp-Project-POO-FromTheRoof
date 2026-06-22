@@ -7,6 +7,8 @@ public class GameAction
     private string _name;
     private int _actionPointCost;
     private List<Effect> _effects;
+    public int ActionPointCost => _actionPointCost;
+    public string Name => _name;
 
     public GameAction(string name, int actionPoint,List<Effect> effects)
     {

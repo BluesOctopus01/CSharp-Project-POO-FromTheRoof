@@ -6,22 +6,23 @@ public class Course
 {
     private string _name;
     private int _minEnergyRequired;
-    private string _description;
     private List<Effect> _effects;
 
-    public Course(string name, int minEnergyRequired, string description,List<Effect> effects)
+    public Course(string name, int minEnergyRequired,List<Effect> effects)
     {
         _name = name;
         _minEnergyRequired = minEnergyRequired;
-        _description = description;
         _effects = effects;
     }
     public bool CanBeAttendedBy(Player player)
     {
-        throw new NotImplementedException("CanBeAttendedBy n'est pas encore implémenter");
+        return player.Stats.Energy >= _minEnergyRequired;
     }
     public void Attend(Player player)
     {
-        throw new NotImplementedException("Attend n'est pas encore implémenter");
+        foreach(Effect effects in _effects)
+        {
+            effects.Apply(player);
+        }
     }
 }

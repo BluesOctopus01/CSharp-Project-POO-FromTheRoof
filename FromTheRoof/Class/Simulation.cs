@@ -5,28 +5,46 @@ namespace FromTheRoof.Class;
 public class Simulation
 {
     private Player _player;
+    private List<GameAction> _actions;
+    private List<Course>_courses;
     private Day _currentDay;
-    private Year _currentYear;
+    private int _currentDayNumber = 1;
     private bool _isRunning = true;
 
-    public Simulation(Player player , Day day, Year currentYear, bool isRunning)
+    public Simulation(Player player ,List<GameAction> actions, List<Course> courses)
     {
         _player = player;
-        _currentDay = day;
-        _currentYear = currentYear;
-        _isRunning = isRunning;
+        _actions = actions;
+        _courses = courses;
+        _currentDay = new Day(_currentDayNumber);
         
     }
     public void Start()
     {
-        throw new NotImplementedException("Start n'est pas encore implémenter");
+        while (_isRunning && _currentDayNumber <= 7)
+        {
+            PlayCurrentDay();
+
+            GoToNextDay();
+        }
+
+        Console.WriteLine("Week finished !");
     }
     public void PlayCurrentDay()
     {
-        throw new NotImplementedException("PlayCurrentDay n'est pas encore implémenter");
+        Console.Clear();
+
+        Console.WriteLine($"=== DAY {_currentDayNumber} ===");
+
+        _player.DisplayStats();
+        _player.DisplaySkills();
+
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey(true);
     }
     public void GoToNextDay()
     {
-        throw new NotImplementedException("GoToNextDay n'est pas encore implémenter");
+        _currentDayNumber ++;
+        _currentDay = new Day(_currentDayNumber);
     }
 }

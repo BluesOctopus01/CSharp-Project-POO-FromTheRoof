@@ -1,19 +1,10 @@
 ﻿using FromTheRoof.Class;
 using FromTheRoof.Init;
 
-class Program
-{
+Player player = GameInitializer.CreatePlayer();
 
-    static void Main(string[] args)
-    {
-        Player player = GameInitializer.CreatePlayer();
-        player.DisplayStats();
-        player.DisplaySkills();
+List<GameAction> actions = ActionInitializer.CreateDefaultActions();
+List<Course> courses = CourseInitializer.CreateWeeklyCourses();
 
-        List<GameAction> actions = ActionInitilizer.CreateDefaultActions();
-        foreach(GameAction act in actions)
-        {
-            act.Preview();
-        }
-    }
-}
+Simulation simulation= new Simulation(player,actions,courses);
+simulation.Start();
