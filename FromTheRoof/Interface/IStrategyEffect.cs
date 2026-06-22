@@ -5,5 +5,5 @@ namespace FromTheRoof.Interface;
 
 public interface IStrategyEffect
 {
-    void ApplyEffect(Player player, int value);
+    void ApplyEffect(Player player, double value);
 }

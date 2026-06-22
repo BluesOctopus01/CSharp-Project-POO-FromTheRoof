@@ -14,6 +14,7 @@ public class Player
         _stat = stat;
         _skills = skills;
     }
+    public StatSheet Stats => _stat;
     public void DisplayStats()
     {
         _stat.DisplayStat();

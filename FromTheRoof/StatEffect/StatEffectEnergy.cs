@@ -1,0 +1,13 @@
+using System;
+using FromTheRoof.Class;
+using FromTheRoof.Interface;
+
+namespace FromTheRoof.StatEffect;
+
+public class StatEffectEnergy : IStrategyEffect
+{
+    public void ApplyEffect(Player player, double value)
+    {
+        player.Stats.ModifyEnergy((int)value);
+    }
+}

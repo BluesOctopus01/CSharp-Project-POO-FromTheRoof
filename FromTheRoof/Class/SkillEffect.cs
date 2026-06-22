@@ -11,7 +11,7 @@ public class SkillEffect : IStrategyEffect
     {
         _skillName = skillName;
     }
-    public void ApplyEffect(Player player, int value)
+    public void ApplyEffect(Player player, double value)
     {
         throw new NotImplementedException();
     }

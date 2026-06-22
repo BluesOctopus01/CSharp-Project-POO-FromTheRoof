@@ -2,18 +2,16 @@ using System;
 
 namespace FromTheRoof.Class;
 
-public class Action
+public class GameAction
 {
     private string _name;
     private int _energyCost;
-    private string _description;
     private List<Effect> _effects;
 
-    public Action(string name, int energyCost, string description,List<Effect> effects)
+    public GameAction(string name, int energyCost, string description,List<Effect> effects)
     {
         _name = name;
         _energyCost = energyCost;
-        _description = description;
         _effects = effects;
     }
     public void Execute(Player player)
@@ -22,6 +20,6 @@ public class Action
     }
     public void Preview()
     {
-        throw new NotImplementedException("Preview n'est pas encore implémenter");
+        Console.WriteLine($"{_name} : - {_energyCost} PA");
     }
 }
