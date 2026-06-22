@@ -25,6 +25,11 @@ public class GameAction
     }
     public void Preview()
     {
-        Console.WriteLine($"{_name} : - {_actionPointCost} Action Point");
+        Console.WriteLine($"[{_actionPointCost} AP] {_name}");
+        foreach(Effect effect in _effects)
+        {
+            effect.Preview();
+        }
+        Console.WriteLine("");
     }
 }

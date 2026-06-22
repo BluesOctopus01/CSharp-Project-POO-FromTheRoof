@@ -10,4 +10,8 @@ public class StatEffectMoney : IStrategyEffect
     {
         player.Stats.ModifyMoney(value);
     }
+    public string GetDescription(double value)
+    {
+        return $"{value:+#;-#} Money";
+    }
 }

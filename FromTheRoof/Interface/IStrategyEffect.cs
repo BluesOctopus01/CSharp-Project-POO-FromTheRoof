@@ -6,4 +6,6 @@ namespace FromTheRoof.Interface;
 public interface IStrategyEffect
 {
     void ApplyEffect(Player player, double value);
+    
+    string GetDescription(double value);
 }

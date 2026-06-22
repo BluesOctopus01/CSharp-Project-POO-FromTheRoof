@@ -1,5 +1,6 @@
 using System;
-
+using System.Threading;
+using FromTheRoof.Ui;
 namespace FromTheRoof.Class;
 
 public class Simulation
@@ -11,6 +12,7 @@ public class Simulation
     private Day _currentDay;
     private int _currentDayNumber = 1;
     private bool _isRunning = true;
+
     public Simulation(Player player, List<GameAction> actions, List<Course> courses, List<GameEvent> events)
     {
         _player = player;
@@ -21,45 +23,51 @@ public class Simulation
     }
 
     public void Start()
-    {
-        Console.ReadKey(true);
-        
+    {   GameUi.ShowTitle();
+        GameUi.Pause("Press any key to start...");
+
         while (_isRunning && _currentDayNumber <= 7)
         {
             PlayCurrentDay();
             GoToNextDay();
         }
 
-        Console.WriteLine("Week finished !");
+        GameUi.Clear();
+        Console.WriteLine("=== WEEK FINISHED ===");
+        GameUi.Pause();
     }
 
     public void PlayCurrentDay()
     {
-        Console.WriteLine($"=== DAY {_currentDayNumber} {_player.Name} ===");
+        Console.Clear();
+        GameUi.ShowHeader(_currentDayNumber, _player.Name);
 
         _player.DisplayStats();
+        Console.WriteLine();
         _player.DisplaySkills();
+
+        GameUi.Pause();
 
         PlanActionForCurrentDay();
 
-        Console.WriteLine();
-        Console.WriteLine("=== Running day ===");
+        Console.Clear();
+        GameUi.ShowHeader(_currentDayNumber, _player.Name);
+
+        Console.WriteLine("Running day...");
+        GameUi.Loading();
+
         AssignRandomEventToCurrentDay();
         _currentDay.Run(_player);
 
         Console.WriteLine();
-        Console.WriteLine("=== End of day ===");
+        Console.WriteLine("=== END OF DAY ===");
+        Console.WriteLine();
+
         _player.DisplayStats();
+        Console.WriteLine();
         _player.DisplaySkills();
 
-        Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(true);
-    }
-
-    private void GoToNextDay()
-    {
-        _currentDayNumber++;
-        _currentDay = new Day(_currentDayNumber);
+        GameUi.Pause();
     }
 
     private void PlanActionForCurrentDay()
@@ -68,46 +76,43 @@ public class Simulation
 
         while (isPlanning)
         {
-            Console.WriteLine();
-            Console.WriteLine("=== Planning ===");
+            Console.Clear();
+            GameUi.ShowHeader(_currentDayNumber, _player.Name);
+
+            Console.WriteLine("=== PLANNING ===");
             Console.WriteLine("1. Add action");
             Console.WriteLine("2. Remove action");
             Console.WriteLine("3. Show planned day");
             Console.WriteLine("4. Start day");
+            Console.WriteLine();
             Console.Write("Choice : ");
 
             string choice = Console.ReadLine() ?? "";
+
+            Console.WriteLine();
 
             switch (choice)
             {
                 case "1":
                     AddActionToCurrentDay();
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(true);
                     break;
 
                 case "2":
                     RemoveActionFromCurrentDay();
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(true);
                     break;
 
                 case "3":
                     _currentDay.DisplaySummary();
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(true);
+                    GameUi.Pause();
                     break;
 
                 case "4":
                     isPlanning = false;
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(true);
                     break;
 
                 default:
                     Console.WriteLine("Invalid choice.");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(true);
+                    GameUi.Pause();
                     break;
             }
         }
@@ -115,8 +120,11 @@ public class Simulation
 
     private void AddActionToCurrentDay()
     {
+        Console.Clear();
+        GameUi.ShowHeader(_currentDayNumber, _player.Name);
+
+        Console.WriteLine("=== AVAILABLE ACTIONS ===");
         Console.WriteLine();
-        Console.WriteLine("=== Available actions ===");
 
         for (int i = 0; i < _actions.Count; i++)
         {
@@ -124,7 +132,9 @@ public class Simulation
             _actions[i].Preview();
         }
 
+        Console.WriteLine();
         Console.Write("Choose action number : ");
+
         string input = Console.ReadLine() ?? "";
 
         if (int.TryParse(input, out int choice))
@@ -137,25 +147,30 @@ public class Simulation
             }
             else
             {
-                Console.WriteLine("Invalid action number...");
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey(true);
-                
+                Console.WriteLine("Invalid action number.");
             }
         }
         else
         {
             Console.WriteLine("Invalid input.");
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey(true);
         }
+
+        GameUi.Pause();
     }
 
     private void RemoveActionFromCurrentDay()
     {
+        Console.Clear();
+        GameUi.ShowHeader(_currentDayNumber, _player.Name);
+
+        Console.WriteLine("=== REMOVE ACTION ===");
+        Console.WriteLine();
+
         _currentDay.DisplaySummary();
 
+        Console.WriteLine();
         Console.Write("Choose planned action number to remove : ");
+
         string input = Console.ReadLine() ?? "";
 
         if (int.TryParse(input, out int choice))
@@ -166,6 +181,8 @@ public class Simulation
         {
             Console.WriteLine("Invalid input.");
         }
+
+        GameUi.Pause();
     }
 
     private void AssignRandomEventToCurrentDay()
@@ -179,4 +196,11 @@ public class Simulation
             }
         }
     }
+
+    private void GoToNextDay()
+    {
+        _currentDayNumber++;
+        _currentDay = new Day(_currentDayNumber);
+    }
+
 }

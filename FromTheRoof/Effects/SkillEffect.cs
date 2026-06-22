@@ -18,5 +18,8 @@ public class SkillEffect : IStrategyEffect
         skill.IncreaseLevel((int)value);
     }
 
-
+    public string GetDescription(double value)
+    {
+        return $"{value:+#;-#} {_skillName} Skill";
+    }
 }

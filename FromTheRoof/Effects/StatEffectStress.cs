@@ -10,4 +10,9 @@ public class StatEffectStress : IStrategyEffect
     {
     player.Stats.ModifyStress((int)value);
     }
+
+    public string GetDescription(double value)
+    {
+        return $"{value:+#;-#} Stress";
+    }
 }

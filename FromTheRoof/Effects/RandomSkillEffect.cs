@@ -14,4 +14,9 @@ public class RandomSkillEffect : IStrategyEffect
         randomSkill.IncreaseLevel((int)value);
         Console.WriteLine($"{randomSkill.Name} increased !");
     }
+
+    public string GetDescription(double value)
+    {
+        return $"{value:+#;-#} Random Skill";
+    }
 }

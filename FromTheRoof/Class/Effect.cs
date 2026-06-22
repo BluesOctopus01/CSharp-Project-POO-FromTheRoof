@@ -8,7 +8,6 @@ public class Effect
     private int _value;
 
     private IStrategyEffect _strategy;
-
     public Effect(int value, IStrategyEffect strategy)
     {
         _value = value;
@@ -21,5 +20,9 @@ public class Effect
     public void Apply(Player player)
     {
         _strategy.ApplyEffect(player,_value);
+    }
+    public void Preview()
+    {
+        Console.WriteLine($"    • {_strategy.GetDescription(_value)}");
     }
 }

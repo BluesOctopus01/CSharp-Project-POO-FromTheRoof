@@ -10,4 +10,8 @@ public class StatEffectEnergy : IStrategyEffect
     {
         player.Stats.ModifyEnergy((int)value);
     }
+    public string GetDescription(double value)
+    {
+        return $"{value:+#;-#} Energy";
+    }
 }

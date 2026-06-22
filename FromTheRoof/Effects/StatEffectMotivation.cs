@@ -10,4 +10,8 @@ public class StatEffectMotivation : IStrategyEffect
     {
         player.Stats.ModifyMotivation((int)value);
     }
+        public string GetDescription(double value)
+    {
+        return $"{value:+#;-#} Motivation";
+    }
 }
