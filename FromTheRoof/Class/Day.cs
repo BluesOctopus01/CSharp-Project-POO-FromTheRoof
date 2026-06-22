@@ -8,6 +8,7 @@ public class Day
     private List<Action> _plannedActions;
     private Event? _dailyEvent;
     private Course? _dailyCourse;
+    private int actionPoint = 5;
 
     public Day(int number = 1)
     {

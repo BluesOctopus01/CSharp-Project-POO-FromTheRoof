@@ -7,13 +7,14 @@ public class Skill
     private string _name;
     private int _level = 0;
 
+    public string Name =>_name;
     public Skill(string name)
     {
         _name = name;
     }
     public void IncreaseLevel(int value)
     {
-        throw new NotImplementedException("IncreaseLevel n'est pas encore implémenter");
+        _level += value;
     }
     public void Display()
     {

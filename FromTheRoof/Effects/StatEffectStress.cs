@@ -2,7 +2,7 @@ using System;
 using FromTheRoof.Class;
 using FromTheRoof.Interface;
 
-namespace FromTheRoof.StatEffect;
+namespace FromTheRoof.Effects;
 
 public class StatEffectStress : IStrategyEffect
 {

@@ -2,12 +2,12 @@ using System;
 using FromTheRoof.Class;
 using FromTheRoof.Interface;
 
-namespace FromTheRoof.StatEffect;
+namespace FromTheRoof.Effects;
 
-public class StatEffectMotivation : IStrategyEffect
+public class StatEffectMoney : IStrategyEffect
 {
     public void ApplyEffect(Player player, double value)
     {
-        player.Stats.ModifyMotivation((int)value);
+        player.Stats.ModifyMoney(value);
     }
 }

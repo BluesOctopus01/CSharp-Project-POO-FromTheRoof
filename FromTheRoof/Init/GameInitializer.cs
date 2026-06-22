@@ -35,5 +35,5 @@ public static class GameInitializer
             new Skill("Cybersécurité")
         };
     }
-
+    
 }

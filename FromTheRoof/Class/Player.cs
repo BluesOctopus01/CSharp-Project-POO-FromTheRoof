@@ -15,6 +15,7 @@ public class Player
         _skills = skills;
     }
     public StatSheet Stats => _stat;
+    public List<Skill> Skills => _skills;
     public void DisplayStats()
     {
         _stat.DisplayStat();
@@ -31,8 +32,16 @@ public class Player
     {
         throw new NotImplementedException("CanAttendCourse n'est pas encore implémenter");
     }
-    public bool GetSkillByName(string name)
+    public Skill? GetSkillByName(string name)
     {
-        throw new NotImplementedException("GetSkillByName n'est pas encore implémenter");
+        foreach (Skill skill in _skills)
+        {
+            if (skill.Name == name)
+            {
+                return skill;
+            }
+        }
+
+        return null;
     }
 }

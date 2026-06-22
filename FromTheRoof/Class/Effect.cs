@@ -1,6 +1,6 @@
 using System;
 using FromTheRoof.Interface;
-
+using FromTheRoof.Class;
 namespace FromTheRoof.Class;
 
 public class Effect
@@ -9,7 +9,7 @@ public class Effect
 
     private IStrategyEffect _strategy;
 
-    protected Effect(int value, IStrategyEffect strategy)
+    public Effect(int value, IStrategyEffect strategy)
     {
         _value = value;
         _strategy = strategy;

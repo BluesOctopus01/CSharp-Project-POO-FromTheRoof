@@ -13,7 +13,9 @@ public class SkillEffect : IStrategyEffect
     }
     public void ApplyEffect(Player player, double value)
     {
-        throw new NotImplementedException();
+        Skill? skill = player.GetSkillByName(_skillName);
+        if (skill != null)
+        skill.IncreaseLevel((int)value);
     }
 
 
