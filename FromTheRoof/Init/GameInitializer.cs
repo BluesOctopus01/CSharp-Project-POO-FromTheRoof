@@ -31,8 +31,8 @@ public static class GameInitializer
             new Skill("C#"),
             new Skill("SQL"),
             new Skill("Web"),
-            new Skill("Réseaux"),
-            new Skill("Cybersécurité")
+            new Skill("Network"),
+            new Skill("Cybersecurity")
         };
     }
     

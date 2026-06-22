@@ -10,6 +10,10 @@ class Program
         player.DisplayStats();
         player.DisplaySkills();
 
-        // GameAction action = new GameAction("test",1,"testtest",)
+        List<GameAction> actions = ActionInitilizer.CreateDefaultActions();
+        foreach(GameAction act in actions)
+        {
+            act.Preview();
+        }
     }
 }
