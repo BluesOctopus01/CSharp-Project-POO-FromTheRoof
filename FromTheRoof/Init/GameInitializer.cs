@@ -3,7 +3,7 @@ using FromTheRoof.Class;
 
 namespace FromTheRoof.Init;
 
-public static class GameInitializer
+public   class GameInitializer
 {
     public static Player CreatePlayer()
     {

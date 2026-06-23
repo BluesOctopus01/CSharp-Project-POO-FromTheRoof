@@ -1,5 +1,3 @@
-using System;
-
 namespace FromTheRoof.Class;
 
 public class GameEvent
@@ -14,11 +12,7 @@ public class GameEvent
     public string Name => _name;
     public string Description => _description;
 
-    public GameEvent(
-        string name,
-        string description,
-        int probability,
-        List<Effect> effects)
+    public GameEvent(string name, string description, int probability, List<Effect> effects)
     {
         _name = name;
         _description = description;

@@ -1,5 +1,3 @@
-using System;
-
 namespace FromTheRoof.Class;
 
 public class Player
@@ -28,10 +26,6 @@ public class Player
         {
             skill.Display();
         }
-    }
-    public bool CanAttendCourse(Course course)
-    {
-        throw new NotImplementedException("CanAttendCourse n'est pas encore implémenter");
     }
     public Skill? GetSkillByName(string name)
     {

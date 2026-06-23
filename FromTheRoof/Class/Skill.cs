@@ -1,5 +1,3 @@
-using System;
-
 namespace FromTheRoof.Class;
 
 public class Skill

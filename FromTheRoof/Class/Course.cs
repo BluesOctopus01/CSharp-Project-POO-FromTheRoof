@@ -1,4 +1,3 @@
-using System;
 using FromTheRoof.Ui;
 
 namespace FromTheRoof.Class;
@@ -22,27 +21,27 @@ public class Course
         return player.Stats.Energy >= _minEnergyRequired;
     }
     public void Attend(Player player)
-{
-    if (!CanBeAttendedBy(player))
     {
-        Console.WriteLine("You are too tired to attend this course.");
-        return;
+        if (!CanBeAttendedBy(player))
+        {
+            Console.WriteLine("You are too tired to attend this course.");
+            return;
+        }
+
+        GameUi.ShowSection($"COURSE : {Name}");
+        Console.WriteLine("You attend the course.");
+
+        foreach (Effect effect in _effects)
+        {
+            effect.Apply(player);
+        }
+
+        Console.WriteLine("You gained the regular course benefits.");
+        GameUi.ShowSeparator();
+        Console.WriteLine("Before you left the class, the teacher ask you a question...");
+
+        _question.Ask(player);
     }
-
-    GameUi.ShowSection($"COURSE : {Name}");
-    Console.WriteLine("You attend the course.");
-
-    foreach (Effect effect in _effects)
-    {
-        effect.Apply(player);
-    }
-
-    Console.WriteLine("You gained the regular course benefits.");
-    GameUi.ShowSeparator();
-    Console.WriteLine("Before you left the class, the teacher ask you a question...");
-
-    _question.Ask(player);
-}
 
 
 }

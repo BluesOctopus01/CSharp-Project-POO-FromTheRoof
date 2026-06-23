@@ -208,7 +208,6 @@ public class Simulation : IStatObserver
         int courseIndex = (_currentDayNumber - 1)%_courses.Count;
         _currentDay.SetCourse(_courses[courseIndex]);
     }
-
     private void AttendDailyCourse()
     {
         if (_currentDay.DailyCourse == null)
@@ -261,7 +260,6 @@ public class Simulation : IStatObserver
 
         GameUi.Pause();
     }
-
     public void OnStatChanged(StatSheet stats)
     {
         if (_forceFinalExam)

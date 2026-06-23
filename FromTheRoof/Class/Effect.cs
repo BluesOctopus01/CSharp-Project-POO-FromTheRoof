@@ -1,6 +1,4 @@
-using System;
 using FromTheRoof.Interface;
-using FromTheRoof.Class;
 namespace FromTheRoof.Class;
 
 public class Effect
@@ -11,10 +9,6 @@ public class Effect
     public Effect(int value, IStrategyEffect strategy)
     {
         _value = value;
-        _strategy = strategy;
-    }
-    public void SetStrategy(IStrategyEffect strategy)
-    {
         _strategy = strategy;
     }
     public void Apply(Player player)

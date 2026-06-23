@@ -3,6 +3,7 @@ namespace FromTheRoof.Class;
 public class Exam
 {
     private string _name;
+    private int _scoreExam = 0;
 
     public Exam(string name)
     {
@@ -11,37 +12,35 @@ public class Exam
 
     public int CalculateScore(Player player)
     {
-        int score = 0;
-
         foreach (Skill skill in player.Skills)
         {
-            score += skill.Level * 10;
+            _scoreExam += skill.Level * 10;
         }
 
         if (player.Stats.IsMotivated)
         {
-            score += 10;
+            _scoreExam += 10;
         }
 
         if (player.Stats.IsBurnedOut || player.Stats.IsBroke || player.Stats.IsExhausted)
         {
-            score -= 50;
+            _scoreExam -= 50;
         }
 
-        return Math.Clamp(score, 0, 100);
+        return Math.Clamp(_scoreExam, 0, 100);
     }
 
     public void DisplayResult(Player player)
     {
-        int score = CalculateScore(player);
+        int _scoreExam = CalculateScore(player);
 
         Console.WriteLine();
         Console.WriteLine($"=== {_name.ToUpper()} ===");
         Console.WriteLine();
 
-        Console.WriteLine($"Final Score : {score}/100");
+        Console.WriteLine($"Final Score : {_scoreExam}/100");
 
-        if (score >= 60)
+        if (_scoreExam >= 60)
         {
             Console.WriteLine("You passed the exam.");
         }

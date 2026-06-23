@@ -1,4 +1,3 @@
-using System;
 using FromTheRoof.Class;
 
 namespace FromTheRoof.Interface;

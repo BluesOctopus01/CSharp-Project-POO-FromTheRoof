@@ -1,5 +1,3 @@
-using System;
-using FromTheRoof.Effects;
 namespace FromTheRoof.Class;
 
 public class GameAction

@@ -1,5 +1,3 @@
-using System;
-
 namespace FromTheRoof.Class;
 
 public class Day
@@ -14,7 +12,6 @@ public class Day
     {
         _number = number;
         _plannedActions = new List<GameAction>();
-        
     }
     public bool AddAction(GameAction action)
     {
